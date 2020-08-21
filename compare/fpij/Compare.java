@@ -1,9 +1,9 @@
 /***
  * Excerpted from "Functional Programming in Java",
  * published by The Pragmatic Bookshelf.
- * Copyrights apply to this code. It may not be used to create training material, 
+ * Copyrights apply to this code. It may not be used to create training material,
  * courses, books, articles, and the like. Contact us if you are in doubt.
- * We make no guarantees that this code is fit for any purpose. 
+ * We make no guarantees that this code is fit for any purpose.
  * Visit http://www.pragmaticprogrammer.com/titles/vsjava8 for more book information.
 ***/
 package fpij;
@@ -18,11 +18,11 @@ import static java.util.Comparator.comparing;
 public class Compare {
   public static void printPeople(
     final String message, final List<Person> people) {
-      
+
     System.out.println(message);
     people.forEach(System.out::println);
   }
-  
+
   public static void main(String[] args) {
     final List<Person> people = Arrays.asList(
       new Person("John", 20),
@@ -30,9 +30,9 @@ public class Compare {
       new Person("Jane", 21),
       new Person("Greg", 35));
 
-{  
+{
     System.out.println("//" + "START:AGE_ASCEND_OUTPUT");
-    List<Person> ascendingAge = 
+    List<Person> ascendingAge =
       people.stream()
             .sorted((person1, person2) -> person1.ageDifference(person2))
             .collect(toList());
@@ -40,9 +40,9 @@ public class Compare {
     System.out.println("//" + "END:AGE_ASCEND_OUTPUT");
 }
 
-{  
+{
     System.out.println("//" + "START:AGE_ASCEND_MR_OUTPUT");
-    List<Person> ascendingAge = 
+    List<Person> ascendingAge =
       people.stream()
             .sorted(Person::ageDifference)
             .collect(toList());
@@ -60,7 +60,7 @@ public class Compare {
     System.out.println("//" + "END:AGE_DESCEND_OUTPUT");
 
     System.out.println("//" + "START:REVERSE_ORDER_OUTPUT");
-    Comparator<Person> compareAscending = 
+    Comparator<Person> compareAscending =
       (person1, person2) -> person1.ageDifference(person2);
     Comparator<Person> compareDescending = compareAscending.reversed();
 
@@ -79,7 +79,7 @@ public class Compare {
     System.out.println("//" + "START:NAME_ASCEND_OUTPUT");
     printPeople("Sorted in ascending order by name: ",
       people.stream()
-            .sorted((person1, person2) -> 
+            .sorted((person1, person2) ->
                person1.getName().compareTo(person2.getName()))
             .collect(toList()));
     System.out.println("//" + "END:NAME_ASCEND_OUTPUT");
@@ -103,7 +103,7 @@ System.out.println("//" + "END:YOUNGEST_OUTPUT");
 
 {
     people.stream()
-          .sorted((person1, person2) -> 
+          .sorted((person1, person2) ->
              person1.getName().compareTo(person2.getName()));
 
     printPeople("Sorted in ascending order by name: ",
@@ -118,10 +118,10 @@ System.out.println("//" + "END:YOUNGEST_OUTPUT");
 
 {
     System.out.println("//" + "START:SORT_NAME_AND_AGE_OUTPUT");
-    
-    final Function<Person, Integer> byAge = person -> person.getAge();
-    final Function<Person, String> byTheirName = person -> person.getName();
-    
+
+    final Function<Person, Integer> byAge = Person::getAge;
+    final Function<Person, String> byTheirName = Person::getName;
+
     printPeople("Sorted in ascending order by age and name: ",
       people.stream()
             .sorted(comparing(byAge).thenComparing(byTheirName))
