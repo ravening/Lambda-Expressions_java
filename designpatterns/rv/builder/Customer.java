@@ -19,6 +19,18 @@ public class Customer {
         this.sex = builder.sex;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     static class Builder {
         public String firstName;
         public String lastName;
