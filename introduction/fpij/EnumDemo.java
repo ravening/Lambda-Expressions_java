@@ -81,7 +81,8 @@ enum BasicStringOperation implements StringOperation {
     REVERSE("Reverse the string") {
         @Override
         public String apply(String value) {
-            return value.reverse().toString();
+            return value.toString();
+//            return value.reverse().toString();
         }
     }
     ;
